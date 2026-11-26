@@ -13,6 +13,9 @@ license-files = ["LICENSE"]
 authors = [{ name = "Mariia Steeghs-Turchina" }]
 dependencies = []
 
+[project.scripts]
+seal = "quaecer.seal.cli:main"
+
 [project.urls]
 Source = "https://github.com/quaecer/seal"
 
