@@ -22,4 +22,21 @@ evidence.
 
 Apache-2.0.
 
+## Detached timestamps
+
+The optional timestamp commands use the local OpenSSL executable. Generate a
+request for a committed manifest and retain it with the TSA's response.
+`stamp` verifies the response before it writes the detached token.
+
+```sh
+seal timestamp-request manifest.json --out request.tsq
+seal stamp manifest.json reply.tsr --query request.tsq --ca tsa-ca.pem --out stamp.tsr
+seal verify manifest.json --timestamp stamp.tsr --query request.tsq --ca tsa-ca.pem
+```
+
+Explicitly select the TSA trust roots. Use `--chain` for intermediate
+certificates when needed. If the original request is supplied, verification
+also checks the request nonce. The tool performs local verification and
+leaves transport and authority selection to the caller.
+
 Copyright 2026 Mariia Steeghs-Turchina
